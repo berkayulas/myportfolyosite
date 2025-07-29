@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berkay Ulaş | Portfolyo</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Genel Resetleme ve Temel Ayarlar */
+        :root {
+            --primary-color: #2c3e50; /* Ana Renk - Koyu Mavi */
+            --secondary-color: #3498db; /* İkincil Renk - Açık Mavi */
+            --background-color: #ecf0f1; /* Arka Plan Rengi */
+            --text-color: #34495e; /* Metin Rengi */
+            --light-gray: #f4f4f4;
+            --white-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Sayfa içi linklere yumuşak kaydırma efekti */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        /* Header ve Navigasyon */
+        .main-header {
+            background: var(--white-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav ul li {
+            margin-left: 20px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .main-nav ul li a:hover, .main-nav ul li a.active {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+        
+        /* Mobil Menü için Hamburger İkonu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        /* Ana Giriş Alanı (Hero) */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Buton için dikey hizalama */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white-color);
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)),  no-repeat center center/cover;
+            padding-top: 60px; /* Header yüksekliği kadar boşluk */
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem; /* Buton ile arasına boşluk */
+        }
+        
+        /* Bölüm Başlıkları ve Genel Yapı */
+        .section {
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .section:nth-of-type(odd) {
+            background-color: var(--white-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .line {
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 0 auto 3rem auto;
+            border-radius: 2px;
+        }
+
+        /* Hakkımda Bölümü */
+        #hakkimda p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1rem;
+        }
+
+        /* İletişim Bölümü */
+        .contact-links {
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobil Cihazlar için Medya Sorguları (Responsive Tasarım) */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 70%;
+                height: 100vh;
+                background: rgba(44, 62, 80, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .main-nav.active {
+                transform: translateX(0);
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            .main-nav ul li a {
+                color: var(--white-color); /* Mobil menü link rengi */
+                font-size: 1.2rem;
+            }
+            
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#hero" class="logo">Berkay Ulaş</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Ana Sayfa</a></li>
+                    <li><a href="#hakkimda">Hakkımda</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Merhaba, Ben Berkay</h1>
+                <p>Bir Web Geliştirici ve Tasarımcı</p>
+                <a href="#iletisim" class="btn">Benimle İletişime Geç</a>
+            </div>
+        </section>
+
+        <section id="hakkimda" class="section">
+            <div class="container">
+                <h2 class="section-title">Hakkımda</h2>
+                <div class="line"></div>
+                <p>
+                    Teknolojiye ve tasarıma tutkuyla bağlı bir web geliştiriciyim. Modern ve kullanıcı dostu web siteleri ve uygulamalar oluşturmaktan keyif alıyorum. HTML, CSS ve JavaScript konusundaki yeteneklerimi geliştirip kullanarak yaratıcı ve işlevsel çözümler üretiyorum. Sürekli yeni şeyler öğrenmeye ve kendimi geliştirmeye odaklanıyorum.
+                </p>
+            </div>
+        </section>
+
+        <section id="iletisim" class="section">
+            <div class="container">
+                <h2 class="section-title">İletişim</h2>
+                <div class="line"></div>
+                <p>Benimle çalışmak veya bir proje hakkında konuşmak isterseniz aşağıdaki kanallardan ulaşabilirsiniz.</p>
+                <div class="contact-links">
+                    <a href="mailto:berkayulas715@gmail.com" title="E-posta"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/berkay-ulaş-012118370" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/berkayulas" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 | Berkay Ulaş. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // Mobil menüyü (hamburger) açıp kapatmak için gerekli kod
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.main-nav');
+        const navLinks = document.querySelectorAll('.main-nav ul li a');
+
+        // Hamburger ikonuna tıklandığında menüyü aç/kapat
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // İkonu 'bars' ve 'times' arasında değiştir (isteğe bağlı)
+            const icon = hamburger.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Mobil menüde bir linke tıklandığında menüyü kapat
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Sayfa kaydırma sırasında aktif navigasyon linkini vurgulama
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('.main-nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { /* Ayarlama yapılabilir */
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+        // Sayfa yüklendiğinde ilk aktif linki ayarla (Ana Sayfa)
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroLink = document.querySelector('.main-nav ul li a[href="#hero"]');
+            if (heroLink) {
+                heroLink.classList.add('active');
+            }
+        });
+
+    </script>
+</body>
+</html>
